@@ -83,10 +83,12 @@ export function Filter({ onFilterChanged }: IFilterProps) {
               </button>
             </div>
             <div className="alx-dropdown-menu" role="menu">
-              {renderDropdownLink('Completed', true)}
-              {renderDropdownLink('Incompleted', false)}
-              <hr className="alx-dropdown-divider" />
-              {renderDropdownLink('All', undefined)}
+              <div className="alx-dropdown-content">
+                {renderDropdownLink('Completed', true)}
+                {renderDropdownLink('Incompleted', false)}
+                <hr className="alx-dropdown-divider" />
+                {renderDropdownLink('All', undefined)}
+              </div>
             </div>
           </div>
         </div>
