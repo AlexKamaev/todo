@@ -20,7 +20,7 @@ export class DataService {
     }
 
 
-    public static async GetTodos(limit: number = DEFAULT_LIMIT, completed?: boolean): Promise<ITodoPreview[]> {
+    public static async GetTodos(completed?: boolean, limit: number = DEFAULT_LIMIT): Promise<ITodoPreview[]> {
         const url = DataService.GetTodosUrl(limit, completed);
 
         const data = await fetch(url);

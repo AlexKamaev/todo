@@ -29,6 +29,8 @@ export function Filter({ onFilterChanged }: IFilterProps) {
 
     setCompleted(newCompleted);
 
+    setFilterDropDownVisible(false);
+
     onFilterChanged(searchText, newCompleted);
   }
 
@@ -39,7 +41,7 @@ export function Filter({ onFilterChanged }: IFilterProps) {
         onClick={() => onSetCompletedValue(newCompleted)}>
         <span>{text}</span>
         {newCompleted === completed && (
-          <span className="alx-icon">
+          <span className="alx-icon alx-has-text-success">
             <i className="fas fa-check"></i>
           </span>
         )}

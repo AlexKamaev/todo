@@ -9,7 +9,28 @@ function renderStatus(completed: boolean) {
   );
 }
 
-export function TodoPreview({ todo }: ITodoPreviewProps) {
+function renderTitle(title: string, searchText: string) {
+  if (!searchText) return <>{title}</>;
+
+  const regex = new RegExp(`(${searchText})`, 'gi');
+  const parts = title.split(regex);
+
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.toLowerCase() === searchText.toLowerCase() ? (
+          <span key={i} className="alx-has-background-warning">
+            {part}
+          </span>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
+export function TodoPreview({ todo, searchText }: ITodoPreviewProps) {
   return (
     <div className="alx-card">
       <header className="alx-card-header">
@@ -19,7 +40,7 @@ export function TodoPreview({ todo }: ITodoPreviewProps) {
         </span>
       </header>
       <div className="alx-card-content">
-        <div className="alx-content">{todo.title}</div>
+        <div className="alx-content">{renderTitle(todo.title, searchText)}</div>
       </div>
     </div>
   );

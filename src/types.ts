@@ -6,11 +6,18 @@ export interface ITodoPreview {
 }
 
 export interface ITodoPreviewListProps {
-    todos: ITodoPreview[]
+    todos: ITodoPreview[],
+    searchText: string,
+}
+
+export interface ITodoPreviewListState {
+    todos: ITodoPreview[],
+    searchText: string,
 }
 
 export interface ITodoPreviewProps {
-    todo: ITodoPreview
+    todo: ITodoPreview,
+    searchText: string,
 }
 
 export interface IFilterProps {
