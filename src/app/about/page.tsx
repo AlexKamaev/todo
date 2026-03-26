@@ -1,4 +1,4 @@
-import CardPreview from '@/components/CardPreview';
+import CardPreview from '@/components/TodoPreview';
 
 export default function Home() {
   return (

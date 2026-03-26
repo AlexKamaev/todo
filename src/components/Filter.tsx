@@ -1,4 +1,23 @@
-export function NavMenu() {
+'use client';
+
+import { useState } from 'react';
+
+export function Filter() {
+  const [searchText, setSearchText] = useState<string>('');
+
+  const [filterDropdownVisible, setFilterDropDownVisible] =
+    useState<boolean>(false);
+
+  function onSearchTextInput(e: React.InputEvent<HTMLInputElement>): void {
+    setSearchText(e.currentTarget.value);
+  }
+
+  function onFilterDropdownButtonClick(
+    e: React.MouseEvent<HTMLButtonElement>,
+  ): void {
+    setFilterDropDownVisible(!filterDropdownVisible);
+  }
+
   return (
     <nav className="alx-level">
       <div className="alx-level-left"></div>
@@ -10,6 +29,8 @@ export function NavMenu() {
                 className="alx-input"
                 type="text"
                 placeholder="Find a task..."
+                value={searchText}
+                onInput={onSearchTextInput}
               />
               <span className="alx-icon alx-is-small alx-is-right">
                 <i className="fas fa-magnifying-glass"></i>
@@ -18,21 +39,21 @@ export function NavMenu() {
           </div>
         </div>
         <div className="alx-level-item">
-          <div className="alx-dropdown">
+          <div
+            className={`alx-dropdown ${filterDropdownVisible ? 'alx-is-active' : ''}`}>
             <div className="alx-dropdown-trigger">
               <button
                 className="alx-button"
                 aria-haspopup="true"
-                aria-controls="dropdown-menu3">
+                onClick={onFilterDropdownButtonClick}>
                 <span className="alx-icon-text">
                   <span className="alx-icon">
-                    {/* fas fa-filter-circle-xmark */}
                     <i className="fas fa-filter"></i>
                   </span>
                 </span>
               </button>
             </div>
-            <div className="alx-dropdown-menu" id="dropdown-menu3" role="menu">
+            <div className="alx-dropdown-menu" role="menu">
               <div className="alx-dropdown-content">
                 <a href="#" className="alx-dropdown-item">
                   Completed
@@ -52,7 +73,6 @@ export function NavMenu() {
           <button className="alx-button">
             <span className="alx-icon-text">
               <span className="alx-icon">
-                {/* fas fa-filter-circle-xmark */}
                 <i className="fas fa-moon"></i>
               </span>
             </span>
