@@ -2,8 +2,9 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import { TodoList } from '@/components/TodoList';
 import { Filter } from '@/components/Filter';
-import { ITodoPreview as ITodoPreview } from '@/types';
+import { ITodoPreview, ITodoPreviewListProps } from '@/types';
 import { DataService } from '@/services/DataService';
+import { HomeClient } from '@/components/HomeClient';
 
 export default async function Home() {
   const todos = await DataService.GetTodos();
@@ -11,8 +12,7 @@ export default async function Home() {
   return (
     <main className="alx-container">
       <div className="alx-section">
-        <Filter />
-        <TodoList todos={todos} />
+        <HomeClient todos={todos} />
       </div>
     </main>
   );

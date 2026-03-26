@@ -12,3 +12,7 @@ export interface ITodoPreviewListProps {
 export interface ITodoPreviewProps {
     todo: ITodoPreview
 }
+
+export interface IFilterProps {
+    onFilterChanged: (searchText: string, completed: boolean | undefined) => void;
+}

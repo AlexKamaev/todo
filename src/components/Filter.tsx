@@ -1,21 +1,50 @@
 'use client';
 
+import { IFilterProps } from '@/types';
 import { useState } from 'react';
 
-export function Filter() {
+export function Filter({ onFilterChanged }: IFilterProps) {
   const [searchText, setSearchText] = useState<string>('');
+  const [completed, setCompleted] = useState<boolean | undefined>(undefined);
 
   const [filterDropdownVisible, setFilterDropDownVisible] =
     useState<boolean>(false);
 
   function onSearchTextInput(e: React.InputEvent<HTMLInputElement>): void {
-    setSearchText(e.currentTarget.value);
+    const newSearchText = e.currentTarget.value;
+
+    setSearchText(newSearchText);
+
+    onFilterChanged(newSearchText, completed);
   }
 
   function onFilterDropdownButtonClick(
     e: React.MouseEvent<HTMLButtonElement>,
   ): void {
     setFilterDropDownVisible(!filterDropdownVisible);
+  }
+
+  function onSetCompletedValue(newCompleted: boolean | undefined): void {
+    if (newCompleted === completed) return;
+
+    setCompleted(newCompleted);
+
+    onFilterChanged(searchText, newCompleted);
+  }
+
+  function renderDropdownLink(text: string, newCompleted: boolean | undefined) {
+    return (
+      <a
+        className="alx-dropdown-item alx-icon-text"
+        onClick={() => onSetCompletedValue(newCompleted)}>
+        <span>{text}</span>
+        {newCompleted === completed && (
+          <span className="alx-icon">
+            <i className="fas fa-check"></i>
+          </span>
+        )}
+      </a>
+    );
   }
 
   return (
@@ -54,18 +83,10 @@ export function Filter() {
               </button>
             </div>
             <div className="alx-dropdown-menu" role="menu">
-              <div className="alx-dropdown-content">
-                <a href="#" className="alx-dropdown-item">
-                  Completed
-                </a>
-                <a href="#" className="alx-dropdown-item">
-                  Incompleted
-                </a>
-                <hr className="alx-dropdown-divider" />
-                <a href="#" className="alx-dropdown-item">
-                  All
-                </a>
-              </div>
+              {renderDropdownLink('Completed', true)}
+              {renderDropdownLink('Incompleted', false)}
+              <hr className="alx-dropdown-divider" />
+              {renderDropdownLink('All', undefined)}
             </div>
           </div>
         </div>
