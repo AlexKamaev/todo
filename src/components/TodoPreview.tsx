@@ -9,7 +9,7 @@ function renderStatus(completed: boolean) {
   );
 }
 
-function renderTitle(title: string, searchText: string) {
+function renderTitle(title: string, searchText: string | undefined) {
   if (!searchText) return <>{title}</>;
 
   const regex = new RegExp(`(${searchText})`, 'gi');

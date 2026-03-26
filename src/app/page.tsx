@@ -1,8 +1,3 @@
-import Image from 'next/image';
-import styles from './page.module.css';
-import { TodoList } from '@/components/TodoList';
-import { Filter } from '@/components/Filter';
-import { ITodoPreview, ITodoPreviewListProps } from '@/types';
 import { DataService } from '@/services/DataService';
 import { HomeClient } from '@/components/HomeClient';
 

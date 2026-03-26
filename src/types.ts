@@ -7,7 +7,7 @@ export interface ITodoPreview {
 
 export interface ITodoPreviewListProps {
     todos: ITodoPreview[],
-    searchText: string,
+    searchText?: string,
 }
 
 export interface ITodoPreviewListState {
@@ -17,7 +17,7 @@ export interface ITodoPreviewListState {
 
 export interface ITodoPreviewProps {
     todo: ITodoPreview,
-    searchText: string,
+    searchText: string | undefined,
 }
 
 export interface IFilterProps {
