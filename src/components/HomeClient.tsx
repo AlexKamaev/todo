@@ -5,6 +5,7 @@ import { Filter } from './Filter';
 import { TodoList } from './TodoList';
 import { useState } from 'react';
 import { DataService } from '@/services/DataService';
+import { useRouter } from 'next/navigation';
 
 export function HomeClient(props: ITodoPreviewListProps) {
   async function onFilterChanged(
@@ -18,6 +19,12 @@ export function HomeClient(props: ITodoPreviewListProps) {
     setState({ todos: filteredTodos, searchText });
   }
 
+  function onTodoClicked(id: number) {
+    router.push(`/${id}`);
+  }
+
+  const router = useRouter();
+
   const [state, setState] = useState<ITodoPreviewListState>({
     todos: props.todos,
     searchText: '',
@@ -26,7 +33,11 @@ export function HomeClient(props: ITodoPreviewListProps) {
   return (
     <>
       <Filter onFilterChanged={onFilterChanged} />
-      <TodoList todos={state.todos} searchText={state.searchText} />
+      <TodoList
+        todos={state.todos}
+        searchText={state.searchText}
+        onTodoClick={onTodoClicked}
+      />
     </>
   );
 }

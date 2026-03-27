@@ -7,7 +7,11 @@ export interface ITodoPreview {
 
 export interface ITodoPreviewListProps {
     todos: ITodoPreview[],
+}
+
+export interface IClientTodoPreviewListProps extends ITodoPreviewListProps {
     searchText?: string,
+    onTodoClick: (id: number) => void,
 }
 
 export interface ITodoPreviewListState {
@@ -18,6 +22,7 @@ export interface ITodoPreviewListState {
 export interface ITodoPreviewProps {
     todo: ITodoPreview,
     searchText: string | undefined,
+    onClick: (id: number) => void,
 }
 
 export interface IFilterProps {

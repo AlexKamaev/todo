@@ -1,3 +1,5 @@
+import styles from './TodoPreview.module.scss';
+
 import { ITodoPreviewProps } from '@/types';
 
 function renderStatus(completed: boolean) {
@@ -30,9 +32,9 @@ function renderTitle(title: string, searchText: string | undefined) {
   );
 }
 
-export function TodoPreview({ todo, searchText }: ITodoPreviewProps) {
+export function TodoPreview({ todo, searchText, onClick }: ITodoPreviewProps) {
   return (
-    <div className="alx-card">
+    <div className={`alx-card ${styles.todo_preview}`} onClick={() => onClick(todo.id)}>
       <header className="alx-card-header">
         <p className="alx-card-header-title">Task #{todo.id}</p>
         <span className="alx-card-header-icon" aria-label="is-completed">

@@ -1,9 +1,13 @@
 'use client';
 
-import { ITodoPreviewListProps } from '@/types';
+import { IClientTodoPreviewListProps, ITodoPreviewListProps } from '@/types';
 import { TodoPreview } from './TodoPreview';
 
-export function TodoList({ todos, searchText }: ITodoPreviewListProps) {
+export function TodoList({
+  todos,
+  searchText,
+  onTodoClick,
+}: IClientTodoPreviewListProps) {
   if (todos.length === 0) {
     return (
       <article className="alx-message alx-is-warning">
@@ -14,6 +18,7 @@ export function TodoList({ todos, searchText }: ITodoPreviewListProps) {
       </article>
     );
   }
+
   return (
     <>
       <p className="alx-content">{todos.length} tasks found.</p>
@@ -22,7 +27,11 @@ export function TodoList({ todos, searchText }: ITodoPreviewListProps) {
           <div
             key={todo.id}
             className="alx-column alx-is-12-mobile alx-is-6-tablet alx-is-4-desktop alx-is-3-widescreen">
-            <TodoPreview todo={todo} searchText={searchText} />
+            <TodoPreview
+              todo={todo}
+              searchText={searchText}
+              onClick={onTodoClick}
+            />
           </div>
         ))}
       </div>
