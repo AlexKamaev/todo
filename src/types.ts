@@ -1,3 +1,10 @@
+export interface IUser {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+}
+
 export interface ITodoPreview {
     userId: number,
     id: number,
@@ -23,6 +30,10 @@ export interface ITodoPreviewProps {
     todo: ITodoPreview,
     searchText: string | undefined,
     onClick: (id: number) => void,
+}
+
+export interface ITodoDetailPageProps {
+    params: Promise<{ id: number }>
 }
 
 export interface IFilterProps {

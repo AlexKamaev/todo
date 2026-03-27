@@ -1,8 +1,10 @@
-import { ITodoPreview } from "@/types";
+import { ITodoPreview, IUser } from "@/types";
 
 const BASE_URL = `https://jsonplaceholder.typicode.com`;
 const TODOS_URL = `${BASE_URL}/todos`;
-const DEFAULT_LIMIT = 15;
+const DEFAULT_TODOS_LIMIT = 15;
+const USERS_URL = `${BASE_URL}/users`;
+
 
 export class DataService {
     private static GetTodosUrl(limit: number, completed?: boolean): string {
@@ -19,9 +21,33 @@ export class DataService {
         return url.toString();
     }
 
+    public static GetTodoUrl(id: number): string {
+        return `${TODOS_URL}/${id}`;
+    }
 
-    public static async GetTodos(completed?: boolean, limit: number = DEFAULT_LIMIT): Promise<ITodoPreview[]> {
+    public static GetUserUrl(id: number): string {
+        return `${USERS_URL}/${id}`;
+    }
+
+
+    public static async GetTodos(completed?: boolean, limit: number = DEFAULT_TODOS_LIMIT): Promise<ITodoPreview[]> {
         const url = DataService.GetTodosUrl(limit, completed);
+
+        const data = await fetch(url);
+
+        return data.json();
+    }
+
+    public static async GetTodo(id: number): Promise<ITodoPreview> {
+        const url = DataService.GetTodoUrl(id);
+
+        const data = await fetch(url);
+
+        return data.json();
+    }
+
+    public static async GetUser(id: number): Promise<IUser> {
+        const url = this.GetUserUrl(id);
 
         const data = await fetch(url);
 
