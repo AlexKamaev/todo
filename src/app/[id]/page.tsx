@@ -10,29 +10,35 @@ export default async function Home({ params }: ITodoDetailPageProps) {
 
   return (
     <div className="alx-container">
-      <div className="alx-card">
-        <header className="alx-card-header">
-          <p className="alx-card-header-title">Task #{id}</p>
-          <span className="alx-card-header-icon" aria-label="is-completed">
-            <span className="alx-card-header-icon" aria-label="is-completed">
-              {renderStatus(todo.completed)}
-            </span>
-          </span>
-        </header>
-        <div className="alx-card-content">
-          <p className="alx-title alx-is-4">{todo.title}</p>
-          <p>
-            <strong>Assigned to:</strong>
-          </p>
-          <p>
-            <strong>Name:</strong> {user.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>Phone:</strong> {user.phone}
-          </p>
+      <div className="alx-columns alx-is-centered alx-m-1">
+        <div className="alx-column alx-is-half">
+          <div className="alx-card">
+            <header className="alx-card-header">
+              <p className="alx-card-header-title">Task #{id}</p>
+              <span className="alx-card-header-icon" aria-label="is-completed">
+                <span
+                  className="alx-card-header-icon"
+                  aria-label="is-completed">
+                  {renderStatus(todo.completed)}
+                </span>
+              </span>
+            </header>
+            <div className="alx-card-content">
+              <p className="alx-title alx-is-4">{todo.title}</p>
+              <p>
+                <strong>Assigned to:</strong>
+              </p>
+              <p>
+                <strong>Name:</strong> {user.name}
+              </p>
+              <p>
+                <strong>Email:</strong> {user.email}
+              </p>
+              <p>
+                <strong>Phone:</strong> {user.phone}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
