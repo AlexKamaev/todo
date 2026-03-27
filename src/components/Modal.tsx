@@ -31,8 +31,7 @@ export function Modal({ children }: ModalProps) {
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 1000,
-      }}
-    >
+      }}>
       <div
         className="modal-content"
         onClick={(e) => e.stopPropagation()}
@@ -44,8 +43,7 @@ export function Modal({ children }: ModalProps) {
           maxHeight: '90vh',
           overflowY: 'auto',
           position: 'relative',
-        }}
-      >
+        }}>
         <button
           onClick={() => router.back()}
           style={{
@@ -59,8 +57,7 @@ export function Modal({ children }: ModalProps) {
             color: '#666',
             zIndex: 1001,
           }}
-          aria-label="Close modal"
-        >
+          aria-label="Close modal">
           ✕
         </button>
         <div style={{ padding: '32px' }}>{children}</div>
