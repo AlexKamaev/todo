@@ -2,7 +2,7 @@ import { DataService } from '@/services/DataService';
 import { ITodoDetailPageProps } from '@/types';
 import { renderStatus } from '@/utils';
 
-export default async function Home({ params }: ITodoDetailPageProps) {
+export default async function TodoDetailPage({ params }: ITodoDetailPageProps) {
   const { id } = await params;
 
   const todo = await DataService.GetTodo(id);
