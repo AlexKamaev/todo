@@ -74,7 +74,7 @@ export function Filter({ onFilterChanged }: IFilterProps) {
             className={`alx-dropdown ${filterDropdownVisible ? 'alx-is-active' : ''}`}>
             <div className="alx-dropdown-trigger">
               <button
-                className="alx-button"
+                className={`alx-button ${completed !== undefined ? 'alx-is-active' : ''}`}
                 aria-haspopup="true"
                 onClick={onFilterDropdownButtonClick}>
                 <span className="alx-icon-text">
