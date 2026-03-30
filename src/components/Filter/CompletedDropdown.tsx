@@ -26,9 +26,7 @@ export function CompletedDropdown({
     );
   }
 
-  function toggleDropdownVisibility(
-    e: React.MouseEvent<HTMLButtonElement>,
-  ): void {
+  function toggleDropdownVisibility(): void {
     setFilterDropDownVisible(!filterDropdownVisible);
   }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { IClientTodoPreviewListProps, ITodoPreviewListProps } from '@/types';
+import { IClientTodoPreviewListProps } from '@/types';
 import { TodoPreview } from './TodoPreview';
 
 export function TodoList({

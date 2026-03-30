@@ -26,15 +26,14 @@ export function HomeClient(props: ITodoPreviewListProps) {
     // for demonstration purposes only, remove this in production
     await delay(LOADING_DELAY);
 
-    let filteredTodos = (await DataService.GetTodos(completed)).filter((todo) =>
-      todo.title.includes(searchText),
+    const filteredTodos = (await DataService.GetTodos(completed)).filter(
+      (todo) => todo.title.includes(searchText),
     );
 
     if (sorting === 'asc') {
       filteredTodos.sort((a, b) => a.title.localeCompare(b.title));
     } else if (sorting === 'desc') {
       filteredTodos.sort((a, b) => b.title.localeCompare(a.title));
-    } else if (sorting === 'none') {
     }
 
     setState({ todos: filteredTodos, searchText, isLoading: false });

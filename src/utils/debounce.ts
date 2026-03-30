@@ -1,6 +1,6 @@
 const DEFAULT_DEBOUNCE_DELAY = 500;
 
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends (...args: unknown[]) => void>(
     callback: T,
     delay: number = DEFAULT_DEBOUNCE_DELAY,
 ) {
