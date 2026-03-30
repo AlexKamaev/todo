@@ -24,6 +24,7 @@ export interface IClientTodoPreviewListProps extends ITodoPreviewListProps {
 export interface ITodoPreviewListState {
     todos: ITodoPreview[],
     searchText: string,
+    isLoading: boolean,
 }
 
 export interface ITodoPreviewProps {

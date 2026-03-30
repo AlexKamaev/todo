@@ -10,6 +10,10 @@ import { TodoList } from './TodoList';
 import { useState } from 'react';
 import { DataService } from '@/services/DataService';
 import { useRouter } from 'next/navigation';
+import { delay } from '@/utils/delay';
+import LoadingCards from './Loading/LoadingCards';
+
+const LOADING_DELAY = 300;
 
 export function HomeClient(props: ITodoPreviewListProps) {
   async function onFilterChanged(
@@ -17,6 +21,11 @@ export function HomeClient(props: ITodoPreviewListProps) {
     completed: boolean | undefined,
     sorting: SortType,
   ) {
+    setState((prevState) => ({ ...prevState, isLoading: true }));
+
+    // for demonstration purposes only, remove this in production
+    await delay(LOADING_DELAY);
+
     let filteredTodos = (await DataService.GetTodos(completed)).filter((todo) =>
       todo.title.includes(searchText),
     );
@@ -28,7 +37,7 @@ export function HomeClient(props: ITodoPreviewListProps) {
     } else if (sorting === 'none') {
     }
 
-    setState({ todos: filteredTodos, searchText });
+    setState({ todos: filteredTodos, searchText, isLoading: false });
   }
 
   function onTodoClicked(id: number) {
@@ -40,16 +49,21 @@ export function HomeClient(props: ITodoPreviewListProps) {
   const [state, setState] = useState<ITodoPreviewListState>({
     todos: props.todos,
     searchText: '',
+    isLoading: false,
   });
 
   return (
     <>
       <Filter onFilterChanged={onFilterChanged} />
-      <TodoList
-        todos={state.todos}
-        searchText={state.searchText}
-        onTodoClick={onTodoClicked}
-      />
+      {state.isLoading ? (
+        <LoadingCards />
+      ) : (
+        <TodoList
+          todos={state.todos}
+          searchText={state.searchText}
+          onTodoClick={onTodoClicked}
+        />
+      )}
     </>
   );
 }
