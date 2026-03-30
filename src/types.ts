@@ -37,5 +37,17 @@ export interface ITodoDetailPageProps {
 }
 
 export interface IFilterProps {
-    onFilterChanged: (searchText: string, completed: boolean | undefined, sorting: 'none' | 'asc' | 'desc') => void;
+    onFilterChanged: (searchText: string, completed: boolean | undefined, sorting: SortType) => void;
+}
+
+export interface ISearchBoxProps {
+    searchText: string,
+    onSearchTextChanged: (e: React.InputEvent<HTMLInputElement>) => void,
+}
+
+export type SortType = 'asc' | 'desc' | 'none';
+
+export interface ISortButtonProps {
+    sorting: SortType,
+    onSortingChanged: () => void,
 }

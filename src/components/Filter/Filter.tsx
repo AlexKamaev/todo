@@ -1,9 +1,9 @@
 'use client';
 
-import { IFilterProps } from '@/types';
+import { IFilterProps, SortType } from '@/types';
 import { useState } from 'react';
-
-type SortType = 'asc' | 'desc' | 'none';
+import { SearchBox } from './SearchBox';
+import { SortButton } from './SortButton';
 
 let currentSort: SortType = 'none';
 
@@ -15,7 +15,7 @@ export function Filter({ onFilterChanged }: IFilterProps) {
   const [filterDropdownVisible, setFilterDropDownVisible] =
     useState<boolean>(false);
 
-  function onSearchTextInput(e: React.InputEvent<HTMLInputElement>): void {
+  function onSearchTextChanged(e: React.InputEvent<HTMLInputElement>): void {
     const newSearchText = e.currentTarget.value;
 
     setSearchText(newSearchText);
@@ -70,15 +70,6 @@ export function Filter({ onFilterChanged }: IFilterProps) {
     );
   }
 
-  function getSortingIcon() {
-    switch (sorting) {
-      case 'desc':
-        return 'fa-arrow-down-z-a';
-      default:
-        return 'fa-arrow-down-a-z';
-    }
-  }
-
   return (
     <nav className="alx-level">
       <div className="alx-level-left"></div>
@@ -86,12 +77,9 @@ export function Filter({ onFilterChanged }: IFilterProps) {
         <div className="alx-level-item">
           <div className="alx-field alx-has-addons">
             <p className="alx-control alx-has-icons-right">
-              <input
-                className="alx-input"
-                type="text"
-                placeholder="Find a task..."
-                value={searchText}
-                onInput={onSearchTextInput}
+              <SearchBox
+                searchText={searchText}
+                onSearchTextChanged={onSearchTextChanged}
               />
               <span className="alx-icon alx-is-small alx-is-right">
                 <i className="fas fa-magnifying-glass"></i>
@@ -125,15 +113,10 @@ export function Filter({ onFilterChanged }: IFilterProps) {
           </div>
         </div>
         <div className="alx-level-item">
-          <button
-            className={`alx-button ${sorting !== 'none' ? 'alx-is-active' : ''}`}
-            onClick={onSortingButtonClick}>
-            <span className="alx-icon-text">
-              <span className="alx-icon">
-                <i className={`fas ${getSortingIcon()}`}></i>
-              </span>
-            </span>
-          </button>
+          <SortButton
+            sorting={sorting}
+            onSortingChanged={onSortingButtonClick}
+          />
         </div>
       </div>
     </nav>
