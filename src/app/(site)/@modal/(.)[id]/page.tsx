@@ -2,6 +2,7 @@ import { DataService } from '@/services/DataService';
 import { ITodoDetailPageProps } from '@/types';
 import { renderStatus } from '@/utils/renderStatus';
 import { Modal } from '@/components/Modal';
+import { TodoDetail } from '@/components/TodoDetail';
 
 export default async function TodoModal({ params }: ITodoDetailPageProps) {
   const { id } = await params;
@@ -11,29 +12,7 @@ export default async function TodoModal({ params }: ITodoDetailPageProps) {
 
   return (
     <Modal>
-      <div className="alx-card">
-        <header className="alx-card-header">
-          <p className="alx-card-header-title">Task #{id}</p>
-          <span className="alx-card-header-icon" aria-label="is-completed">
-            {renderStatus(todo.completed)}
-          </span>
-        </header>
-        <div className="alx-card-content">
-          <p className="alx-title alx-is-4">{todo.title}</p>
-          <p>
-            <strong>Assigned to:</strong>
-          </p>
-          <p>
-            <strong>Name:</strong> {user.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>Phone:</strong> {user.phone}
-          </p>
-        </div>
-      </div>
+      <TodoDetail todo={todo} user={user} />
     </Modal>
   );
 }

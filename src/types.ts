@@ -29,10 +29,16 @@ export interface ITodoPreviewListState {
     isLoading: boolean,
 }
 
+
 export interface ITodoPreviewProps {
     todo: ITodoPreview,
     searchText: string | undefined,
     onClick: (id: number) => void,
+}
+
+export interface ITodoDetailProps {
+    todo: ITodoPreview,
+    user: IUser
 }
 
 export interface ITodoDetailPageProps {
