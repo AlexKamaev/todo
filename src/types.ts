@@ -51,3 +51,8 @@ export interface ISortButtonProps {
     sorting: SortType,
     onSortingChanged: () => void,
 }
+
+export interface ICompletedDropdownProps {
+    completed: boolean | undefined,
+    onCompletedChanged: (newCompleted: boolean | undefined) => void,
+}
