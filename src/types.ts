@@ -69,3 +69,7 @@ export interface ICompletedDropdownProps {
 export interface IModalProps {
     children: ReactNode;
 }
+
+export interface IErrorProps {
+    error: Error;
+}

@@ -1,6 +1,5 @@
 import { DataService } from '@/services/DataService';
 import { ITodoDetailPageProps } from '@/types';
-import { renderStatus } from '@/utils/renderStatus';
 import { Modal } from '@/components/Modal';
 import { TodoDetail } from '@/components/TodoDetail';
 

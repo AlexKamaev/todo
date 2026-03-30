@@ -21,36 +21,39 @@ export class DataService {
         return url.toString();
     }
 
-    public static GetTodoUrl(id: number): string {
+    private static GetTodoUrl(id: number): string {
         return `${TODOS_URL}/${id}`;
     }
 
-    public static GetUserUrl(id: number): string {
+    private static GetUserUrl(id: number): string {
         return `${USERS_URL}/${id}`;
+    }
+
+    private static async fetch<T>(url: string): Promise<T> {
+        const response = await fetch(url);
+
+        if (response.ok)
+            return response.json() as Promise<T>;
+        else
+            throw new Error(`Failed to fetch data from ${url}`);
     }
 
 
     public static async GetTodos(completed?: boolean, limit: number = DEFAULT_TODOS_LIMIT): Promise<ITodoPreview[]> {
         const url = DataService.GetTodosUrl(limit, completed);
 
-        const data = await fetch(url);
-
-        return data.json();
+        return DataService.fetch<ITodoPreview[]>(url);
     }
 
     public static async GetTodo(id: number): Promise<ITodoPreview> {
         const url = DataService.GetTodoUrl(id);
-
-        const data = await fetch(url);
-
-        return data.json();
+        
+        return DataService.fetch<ITodoPreview>(url);
     }
 
     public static async GetUser(id: number): Promise<IUser> {
         const url = this.GetUserUrl(id);
-
-        const data = await fetch(url);
-
-        return data.json();
+        
+        return DataService.fetch<IUser>(url);
     }
 }

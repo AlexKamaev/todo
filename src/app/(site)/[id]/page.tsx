@@ -4,7 +4,6 @@ import { ITodoDetailPageProps } from '@/types';
 
 export default async function TodoDetailPage({ params }: ITodoDetailPageProps) {
   const { id } = await params;
-
   const todo = await DataService.GetTodo(id);
   const user = await DataService.GetUser(todo.userId);
 
