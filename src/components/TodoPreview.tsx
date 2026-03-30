@@ -1,4 +1,4 @@
-import { renderStatus } from '@/utils';
+import { renderStatus } from '@/utils/renderStatus';
 import styles from './TodoPreview.module.scss';
 
 import { ITodoPreviewProps } from '@/types';

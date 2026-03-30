@@ -1,6 +1,6 @@
 import { DataService } from '@/services/DataService';
 import { ITodoDetailPageProps } from '@/types';
-import { renderStatus } from '@/utils';
+import { renderStatus } from '@/utils/renderStatus';
 
 export default async function TodoDetailPage({ params }: ITodoDetailPageProps) {
   const { id } = await params;

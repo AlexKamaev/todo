@@ -1,6 +1,6 @@
 import { DataService } from '@/services/DataService';
 import { ITodoDetailPageProps } from '@/types';
-import { renderStatus } from '@/utils';
+import { renderStatus } from '@/utils/renderStatus';
 import { Modal } from '@/components/Modal';
 
 export default async function TodoModal({ params }: ITodoDetailPageProps) {
@@ -15,9 +15,7 @@ export default async function TodoModal({ params }: ITodoDetailPageProps) {
         <header className="alx-card-header">
           <p className="alx-card-header-title">Task #{id}</p>
           <span className="alx-card-header-icon" aria-label="is-completed">
-            <span
-              className="alx-card-header-icon"
-              aria-label="is-completed">
+            <span className="alx-card-header-icon" aria-label="is-completed">
               {renderStatus(todo.completed)}
             </span>
           </span>
