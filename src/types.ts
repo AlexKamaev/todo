@@ -37,5 +37,5 @@ export interface ITodoDetailPageProps {
 }
 
 export interface IFilterProps {
-    onFilterChanged: (searchText: string, completed: boolean | undefined) => void;
+    onFilterChanged: (searchText: string, completed: boolean | undefined, sorting: 'none' | 'asc' | 'desc') => void;
 }

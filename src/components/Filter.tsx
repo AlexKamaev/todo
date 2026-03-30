@@ -3,9 +3,14 @@
 import { IFilterProps } from '@/types';
 import { useState } from 'react';
 
+type SortType = 'asc' | 'desc' | 'none';
+
+let currentSort: SortType = 'none';
+
 export function Filter({ onFilterChanged }: IFilterProps) {
   const [searchText, setSearchText] = useState<string>('');
   const [completed, setCompleted] = useState<boolean | undefined>(undefined);
+  const [sorting, setSorting] = useState<SortType>(currentSort);
 
   const [filterDropdownVisible, setFilterDropDownVisible] =
     useState<boolean>(false);
@@ -15,7 +20,23 @@ export function Filter({ onFilterChanged }: IFilterProps) {
 
     setSearchText(newSearchText);
 
-    onFilterChanged(newSearchText, completed);
+    onFilterChanged(newSearchText, completed, sorting);
+  }
+
+  function onSortingButtonClick(): void {
+    let newSorting: SortType = 'none';
+
+    if (sorting === 'none') {
+      newSorting = 'asc';
+    } else if (sorting === 'asc') {
+      newSorting = 'desc';
+    } else if (sorting === 'desc') {
+      newSorting = 'none';
+    }
+
+    setSorting(newSorting);
+
+    onFilterChanged(searchText, completed, newSorting);
   }
 
   function onFilterDropdownButtonClick(
@@ -31,7 +52,7 @@ export function Filter({ onFilterChanged }: IFilterProps) {
 
     setFilterDropDownVisible(false);
 
-    onFilterChanged(searchText, newCompleted);
+    onFilterChanged(searchText, newCompleted, sorting);
   }
 
   function renderDropdownLink(text: string, newCompleted: boolean | undefined) {
@@ -47,6 +68,15 @@ export function Filter({ onFilterChanged }: IFilterProps) {
         )}
       </a>
     );
+  }
+
+  function getSortingIcon() {
+    switch (sorting) {
+      case 'desc':
+        return 'fa-arrow-down-z-a';
+      default:
+        return 'fa-arrow-down-a-z';
+    }
   }
 
   return (
@@ -95,10 +125,12 @@ export function Filter({ onFilterChanged }: IFilterProps) {
           </div>
         </div>
         <div className="alx-level-item">
-          <button className="alx-button">
+          <button
+            className={`alx-button ${sorting !== 'none' ? 'alx-is-active' : ''}`}
+            onClick={onSortingButtonClick}>
             <span className="alx-icon-text">
               <span className="alx-icon">
-                <i className="fas fa-moon"></i>
+                <i className={`fas ${getSortingIcon()}`}></i>
               </span>
             </span>
           </button>
