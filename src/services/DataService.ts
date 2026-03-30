@@ -1,4 +1,4 @@
-import { ITodoPreview, IUser } from "@/types";
+import { ITodo, ITodoPreview, IUser } from "@/types";
 
 const BASE_URL = `https://jsonplaceholder.typicode.com`;
 const TODOS_URL = `${BASE_URL}/todos`;
@@ -45,15 +45,15 @@ export class DataService {
         return DataService.fetch<ITodoPreview[]>(url);
     }
 
-    public static async GetTodo(id: number): Promise<ITodoPreview> {
+    public static async GetTodo(id: number): Promise<ITodo> {
         const url = DataService.GetTodoUrl(id);
-        
-        return DataService.fetch<ITodoPreview>(url);
+
+        return DataService.fetch<ITodo>(url);
     }
 
     public static async GetUser(id: number): Promise<IUser> {
         const url = this.GetUserUrl(id);
-        
+
         return DataService.fetch<IUser>(url);
     }
 }

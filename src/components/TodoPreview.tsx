@@ -27,16 +27,21 @@ function renderTitle(title: string, searchText: string | undefined) {
 export function TodoPreview({ todo, searchText, onClick }: ITodoPreviewProps) {
   return (
     <div
+      data-testid="todo-preview"
       className={`alx-card ${styles.todo_preview}`}
       onClick={() => onClick(todo.id)}>
       <header className="alx-card-header">
-        <p className="alx-card-header-title">Task #{todo.id}</p>
-        <span className="alx-card-header-icon" aria-label="is-completed">
+        <p data-testid="todo-preview-id" className="alx-card-header-title">
+          Task #{todo.id}
+        </p>
+        <span className="alx-card-header-icon" aria-label="status-text">
           {renderStatus(todo.completed)}
         </span>
       </header>
       <div className="alx-card-content">
-        <div className="alx-content">{renderTitle(todo.title, searchText)}</div>
+        <div data-testid="todo-preview-title" className="alx-content">
+          {renderTitle(todo.title, searchText)}
+        </div>
       </div>
     </div>
   );

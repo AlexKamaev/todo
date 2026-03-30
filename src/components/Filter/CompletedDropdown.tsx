@@ -14,6 +14,7 @@ export function CompletedDropdown({
   function renderDropdownLink(text: string, newCompleted: boolean | undefined) {
     return (
       <a
+        data-testid={`filter-by-${text.toLowerCase()}`}
         className="alx-dropdown-item alx-icon-text"
         onClick={() => onMenuItemClick(newCompleted)}>
         <span>{text}</span>
@@ -38,6 +39,7 @@ export function CompletedDropdown({
       className={`alx-dropdown ${filterDropdownVisible ? 'alx-is-active' : ''}`}>
       <div className="alx-dropdown-trigger">
         <button
+          data-testid="show-filter"
           className={`alx-button ${completed !== undefined ? 'alx-is-active' : ''}`}
           aria-haspopup="true"
           onClick={toggleDropdownVisibility}>

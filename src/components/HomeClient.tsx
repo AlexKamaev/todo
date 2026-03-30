@@ -5,6 +5,7 @@ import {
   ITodoPreviewListState,
   SortType,
 } from '@/types';
+
 import { Filter } from './Filter/Filter';
 import { TodoList } from './TodoList';
 import { useState } from 'react';

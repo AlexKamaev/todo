@@ -16,6 +16,7 @@ export function SearchBox({
   return (
     <>
       <input
+        data-testid="search-input"
         className="alx-input"
         type="text"
         placeholder="Find a task..."

@@ -8,10 +8,13 @@ export interface IUser {
 }
 
 export interface ITodoPreview {
-    userId: number,
     id: number,
     title: string,
     completed: boolean
+}
+
+export interface ITodo extends ITodoPreview {
+    userId: number,
 }
 
 export interface ITodoPreviewListProps {
@@ -37,7 +40,7 @@ export interface ITodoPreviewProps {
 }
 
 export interface ITodoDetailProps {
-    todo: ITodoPreview,
+    todo: ITodo,
     user: IUser
 }
 

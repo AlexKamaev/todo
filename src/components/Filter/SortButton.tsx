@@ -26,6 +26,7 @@ export function SortButton({ sorting, onSortingChanged }: ISortButtonProps) {
 
   return (
     <button
+      data-testid="sort-button"
       className={`alx-button ${sorting !== 'none' ? 'alx-is-active' : ''}`}
       onClick={changeSorting}>
       <span className="alx-icon-text">
