@@ -15,12 +15,9 @@ export default async function TodoDetailPage({ params }: ITodoDetailPageProps) {
           <div className="alx-card">
             <header className="alx-card-header">
               <p className="alx-card-header-title">Task #{id}</p>
+
               <span className="alx-card-header-icon" aria-label="is-completed">
-                <span
-                  className="alx-card-header-icon"
-                  aria-label="is-completed">
-                  {renderStatus(todo.completed)}
-                </span>
+                {renderStatus(todo.completed)}
               </span>
             </header>
             <div className="alx-card-content">

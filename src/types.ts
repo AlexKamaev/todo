@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IUser {
     id: number;
     name: string;
@@ -56,4 +58,8 @@ export interface ISortButtonProps {
 export interface ICompletedDropdownProps {
     completed: boolean | undefined,
     onCompletedChanged: (newCompleted: boolean | undefined) => void,
+}
+
+export interface IModalProps {
+    children: ReactNode;
 }
