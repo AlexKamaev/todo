@@ -6,38 +6,24 @@ import { SearchBox } from './SearchBox';
 import { SortButton } from './SortButton';
 import { CompletedDropdown } from './CompletedDropdown';
 
-let currentSort: SortType = 'none';
-
 export function Filter({ onFilterChanged }: IFilterProps) {
   const [searchText, setSearchText] = useState<string>('');
   const [completed, setCompleted] = useState<boolean | undefined>(undefined);
-  const [sorting, setSorting] = useState<SortType>(currentSort);
+  const [sorting, setSorting] = useState<SortType>('none');
 
-  function onSearchTextChanged(e: React.InputEvent<HTMLInputElement>): void {
-    const newSearchText = e.currentTarget.value;
-
+  function onSearchTextChanged(newSearchText: string): void {
     setSearchText(newSearchText);
 
     onFilterChanged(newSearchText, completed, sorting);
   }
 
-  function onSortingButtonClick(): void {
-    let newSorting: SortType = 'none';
-
-    if (sorting === 'none') {
-      newSorting = 'asc';
-    } else if (sorting === 'asc') {
-      newSorting = 'desc';
-    } else if (sorting === 'desc') {
-      newSorting = 'none';
-    }
-
+  function onSortingChanged(newSorting: SortType): void {
     setSorting(newSorting);
 
     onFilterChanged(searchText, completed, newSorting);
   }
 
-  function onSetCompletedValue(newCompleted: boolean | undefined): void {
+  function onCompletedChanged(newCompleted: boolean | undefined): void {
     if (newCompleted === completed) return;
 
     setCompleted(newCompleted);
@@ -62,14 +48,11 @@ export function Filter({ onFilterChanged }: IFilterProps) {
         <div className="alx-level-item">
           <CompletedDropdown
             completed={completed}
-            onCompletedChanged={onSetCompletedValue}
+            onCompletedChanged={onCompletedChanged}
           />
         </div>
         <div className="alx-level-item">
-          <SortButton
-            sorting={sorting}
-            onSortingChanged={onSortingButtonClick}
-          />
+          <SortButton sorting={sorting} onSortingChanged={onSortingChanged} />
         </div>
       </div>
     </nav>

@@ -42,14 +42,14 @@ export interface IFilterProps {
 
 export interface ISearchBoxProps {
     searchText: string,
-    onSearchTextChanged: (e: React.InputEvent<HTMLInputElement>) => void,
+    onSearchTextChanged: (searchText: string) => void,
 }
 
 export type SortType = 'asc' | 'desc' | 'none';
 
 export interface ISortButtonProps {
     sorting: SortType,
-    onSortingChanged: () => void,
+    onSortingChanged: (sorting: SortType) => void,
 }
 
 export interface ICompletedDropdownProps {
