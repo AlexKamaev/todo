@@ -1,7 +1,7 @@
 import { DataService } from '@/services/DataService';
 import { ITodoDetailPageProps } from '@/types';
 import { Modal } from '@/components/Modal';
-import { TodoDetail } from '@/components/TodoDetail';
+import { TodoDetail } from '@/components/Todo/TodoDetail';
 
 export default async function TodoModal({ params }: ITodoDetailPageProps) {
   const { id } = await params;

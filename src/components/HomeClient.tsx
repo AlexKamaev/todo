@@ -7,7 +7,7 @@ import {
 } from '@/types';
 
 import { Filter } from './Filter/Filter';
-import { TodoList } from './TodoList';
+import { TodoList } from './Todo/TodoList';
 import { useState } from 'react';
 import { DataService } from '@/services/DataService';
 import { useRouter } from 'next/navigation';

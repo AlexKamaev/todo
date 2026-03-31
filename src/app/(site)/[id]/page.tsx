@@ -1,4 +1,4 @@
-import { TodoDetail } from '@/components/TodoDetail';
+import { TodoDetail } from '@/components/Todo/TodoDetail';
 import { DataService } from '@/services/DataService';
 import { ITodoDetailPageProps } from '@/types';
 

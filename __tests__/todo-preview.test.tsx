@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { TodoPreview } from '@/components/TodoPreview';
+import { TodoPreview } from '@/components/Todo/TodoPreview';
 
 const mockTodo = {
   id: 1,
