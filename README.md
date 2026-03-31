@@ -106,3 +106,6 @@ npm run format
 - обработка разных статусов ответа от API
 - уход от тестового API jsonplaceholder
 - страница 404
+- фикс уязвимых зависимостей npm audit
+- фикс проблем с accessibility
+- проверка lighthouse
