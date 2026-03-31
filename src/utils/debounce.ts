@@ -1,12 +1,12 @@
 const DEFAULT_DEBOUNCE_DELAY = 500;
 
-export function debounce<T extends (...args: unknown[]) => void>(
-    callback: T,
+export function debounce<Args extends unknown[]>(
+    callback: (...args: Args) => void,
     delay: number = DEFAULT_DEBOUNCE_DELAY,
 ) {
     let timeout: number | undefined;
 
-    return (...args: Parameters<T>) => {
+    return (...args: Args) => {
         if (timeout) {
             clearTimeout(timeout);
         }
