@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo Viewer – Приложение для просмотра и управления задачами
 
-## Getting Started
+## 📋 Описание проекта
 
-First, run the development server:
+**Todo Viewer** — это веб-приложение для просмотра, фильтрации, поиска и сортировки списка задач (todos). Приложение получает данные из публичного API [JSONPlaceholder](https://jsonplaceholder.typicode.com/) и предоставляет удобный интерфейс для работы с ними.
+
+### Основные возможности:
+
+- 📝 **Просмотр задач** — вывод списка из 15 задач
+- 🔍 **Поиск** — поиск задач по названию (с дебаунсом)
+- 🏷️ **Фильтрация** — фильтр по статусу (завершено/не завершено/все)
+- 🔤 **Сортировка** — сортировка по алфавиту (A-Z, Z-A, без сортировки)
+- 🪟 **Детали задачи** — просмотр деталей задачи в модальном окне
+
+## 🛠 Технологический стек
+
+| Технология | Назначение |
+|---|---|
+| **Next.js** | Full-stack фреймворк на React |
+| **React** | UI библиотека |
+| **TypeScript** | Типизация JavaScript |
+| **Jest** | Фреймворк для тестирования |
+| **Testing Library** | Утилиты для тестирования React компонентов |
+| **ESLint** | Линтер для проверки кода |
+| **Prettier** | Форматер кода |
+| **Bulma** | CSS фреймворк |
+| **FontAwesome** | Библиотека иконок |
+
+
+## 🚀 Быстрый старт
+
+### Установка зависимостей:
+
+```bash
+npm install
+```
+
+### Запуск dev сервера:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Приложение будет доступно по адресу: **http://localhost:3000**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Доступные команды
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Разработка
 
-## Learn More
+```bash
+# Запустить dev сервер с горячей перезагрузкой
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# Открыть приложение на http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Продакшн
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Построить оптимизированную версию
+npm run build
 
-## Deploy on Vercel
+# Запустить production сервер
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Тестирование
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Запустить все тесты
+npm test
+```
+
+### Проверка и форматирование кода
+
+```bash
+# Проверить код с помощью ESLint
+npm run lint
+
+# Отформатировать код с помощью Prettier
+npm run format
+```
+
+## 🧪 Тестирование
+
+### Структура тестов
+
+Проект содержит юнит-тесты для основных компонентов:
+
+- **home.test.tsx** — тесты для компонента `HomeClient`
+  - Проверка рендеринга списка задач
+  - Тестирование сортировки
+  - Тестирование фильтрации
+  - Тестирование поиска
+
+- **todo-preview.test.tsx** — тесты для компонента `TodoPreview`
+  - Проверка отображения информации о задаче
+  - Тестирование выделения текста при поиске
+  - Проверка обработчика клика
+
+
+## TODO
+
+- улучшенная обработка ошибок
+- добавление UI-нотификаций об ошибках
+- обработка разных статусов ответа от API
+- уход от тестового API jsonplaceholder
+- страница 404
