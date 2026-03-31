@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { HomeClient } from '@/components/HomeClient';
+import { HomeTestHelper } from './helpers/home.test-helper';
 
 const mockTodos = [
   { id: 1, title: 'B', completed: false },
@@ -29,9 +30,7 @@ describe('HomeClient', () => {
   it('renders initial todos list', () => {
     render(<HomeClient todos={mockTodos} />);
 
-    const todos = screen.getAllByTestId('todo-preview');
-
-    expect(todos).toHaveLength(3);
+    expect(HomeTestHelper.getTodos()).toHaveLength(3);
   });
 
   it('sorts todos by title when SortButton clicked', async () => {
@@ -42,78 +41,65 @@ describe('HomeClient', () => {
     fireEvent.click(sortButton);
 
     await waitFor(() => {
-      const previews = screen.getAllByTestId('todo-preview-title');
-      const titles = previews.map((el) => el.textContent);
-
-      expect(titles).toEqual(['A', 'B', 'C']);
+      expect(HomeTestHelper.getTodoPreviewTitleTexts()).toEqual([
+        'A',
+        'B',
+        'C',
+      ]);
     });
 
     fireEvent.click(sortButton);
 
     await waitFor(() => {
-      const previews = screen.getAllByTestId('todo-preview-title');
-      const titles = previews.map((el) => el.textContent);
-
-      expect(titles).toEqual(['C', 'B', 'A']);
+      expect(HomeTestHelper.getTodoPreviewTitleTexts()).toEqual([
+        'C',
+        'B',
+        'A',
+      ]);
     });
 
     fireEvent.click(sortButton);
 
     await waitFor(() => {
-      const previews = screen.getAllByTestId('todo-preview-title');
-      const titles = previews.map((el) => el.textContent);
-
-      expect(titles).toEqual(['B', 'C', 'A']);
+      expect(HomeTestHelper.getTodoPreviewTitleTexts()).toEqual([
+        'B',
+        'C',
+        'A',
+      ]);
     });
   });
 
   it('filters todos when filter is triggered', async () => {
     render(<HomeClient todos={mockTodos} />);
 
-    const filterButton = screen.getByTestId('show-filter');
-
-    fireEvent.click(filterButton);
-
-    const completedFilter = screen.getByTestId('filter-by-completed');
-    fireEvent.click(completedFilter);
+    fireEvent.click(HomeTestHelper.getFilterOption('completed'));
 
     await waitFor(() => {
-      const todos = screen.getAllByTestId('todo-preview');
-
-      expect(todos).toHaveLength(1);
+      expect(HomeTestHelper.getTodos()).toHaveLength(1);
     });
 
-    fireEvent.click(filterButton);
-
-    const incompletedFilter = screen.getByTestId('filter-by-incompleted');
-    fireEvent.click(incompletedFilter);
+    fireEvent.click(HomeTestHelper.getFilterOption('incompleted'));
 
     await waitFor(() => {
-      const todos = screen.getAllByTestId('todo-preview');
-
-      expect(todos).toHaveLength(2);
+      expect(HomeTestHelper.getTodos()).toHaveLength(2);
     });
 
-    const allFilter = screen.getByTestId('filter-by-all');
-    fireEvent.click(allFilter);
+    fireEvent.click(HomeTestHelper.getFilterOption('all'));
 
     await waitFor(() => {
-      const todos = screen.getAllByTestId('todo-preview');
-
-      expect(todos).toHaveLength(3);
+      expect(HomeTestHelper.getTodos()).toHaveLength(3);
     });
   });
 
   it('filters todos by searchText', async () => {
     render(<HomeClient todos={mockTodos} />);
 
-    const searchInput = screen.getByTestId('search-input');
-    fireEvent.input(searchInput, { target: { value: 'C' } });
+    fireEvent.input(HomeTestHelper.getSearchInput(), {
+      target: { value: 'C' },
+    });
 
     await waitFor(() => {
-      const todos = screen.getAllByTestId('todo-preview');
-
-      expect(todos).toHaveLength(1);
+      expect(HomeTestHelper.getTodos()).toHaveLength(1);
     });
   });
 });

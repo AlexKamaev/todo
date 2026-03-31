@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { TodoPreview } from '@/components/Todo/TodoPreview';
+import { TodoPreviewTestHelper } from './helpers/todo-preview.test-helper';
 
 const mockTodo = {
   id: 1,
@@ -30,7 +31,7 @@ describe('TodoPreview', () => {
     expect(highlighted).toHaveClass('alx-has-background-warning');
   });
 
-  it('renders task id in header', () => {
+  it('renders with props', () => {
     render(
       <TodoPreview
         todo={mockTodo}
@@ -39,7 +40,11 @@ describe('TodoPreview', () => {
       />,
     );
 
-    expect(screen.getByText(/Task #1/i)).toBeInTheDocument();
+    expect(TodoPreviewTestHelper.getId()).toHaveTextContent('Task #1');
+
+    expect(TodoPreviewTestHelper.getTitle()).toHaveTextContent(
+      'Buy milk and bread',
+    );
   });
 
   it('calls onClick with todo id when clicked', () => {
@@ -53,7 +58,7 @@ describe('TodoPreview', () => {
       />,
     );
 
-    fireEvent.click(screen.getByTestId('todo-preview'));
+    fireEvent.click(TodoPreviewTestHelper.getTodo());
     expect(handleClick).toHaveBeenCalledWith(1);
   });
 
@@ -66,9 +71,7 @@ describe('TodoPreview', () => {
       />,
     );
 
-    const statusIcon = screen.getByLabelText('status-text');
-
-    expect(statusIcon).toHaveTextContent('in progress');
+    expect(TodoPreviewTestHelper.getStatus()).toHaveTextContent('in progress');
   });
 
   it('renders status when todo is completed', () => {
@@ -80,8 +83,6 @@ describe('TodoPreview', () => {
       />,
     );
 
-    const statusIcon = screen.getByLabelText('status-text');
-
-    expect(statusIcon).toHaveTextContent('completed');
+    expect(TodoPreviewTestHelper.getStatus()).toHaveTextContent('completed');
   });
 });
