@@ -23,7 +23,9 @@ export class HomeTestHelper {
         return screen.getByTestId('show-filter');
     }
 
-    public static getFilterOption(filterType: 'completed' | 'incompleted' | 'all') {
+    public static getFilterOption(
+        filterType: 'completed' | 'incompleted' | 'all'
+    ) {
         return screen.getByTestId(`filter-by-${filterType}`);
     }
 

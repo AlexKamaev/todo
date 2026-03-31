@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface IUser {
     id: number;
@@ -8,65 +8,68 @@ export interface IUser {
 }
 
 export interface ITodoPreview {
-    id: number,
-    title: string,
-    completed: boolean
+    id: number;
+    title: string;
+    completed: boolean;
 }
 
 export interface ITodo extends ITodoPreview {
-    userId: number,
+    userId: number;
 }
 
 export interface ITodoPreviewListProps {
-    todos: ITodoPreview[],
+    todos: ITodoPreview[];
 }
 
 export interface IClientTodoPreviewListProps extends ITodoPreviewListProps {
-    searchText?: string,
-    onTodoClick: (id: number) => void,
+    searchText?: string;
+    onTodoClick: (id: number) => void;
 }
 
 export interface ITodoPreviewListState {
-    todos: ITodoPreview[],
-    searchText: string,
-    isLoading: boolean,
+    todos: ITodoPreview[];
+    searchText: string;
+    isLoading: boolean;
 }
 
-
 export interface ITodoPreviewProps {
-    todo: ITodoPreview,
-    searchText: string | undefined,
-    onClick: (id: number) => void,
+    todo: ITodoPreview;
+    searchText: string | undefined;
+    onClick: (id: number) => void;
 }
 
 export interface ITodoDetailProps {
-    todo: ITodo,
-    user: IUser
+    todo: ITodo;
+    user: IUser;
 }
 
 export interface ITodoDetailPageProps {
-    params: Promise<{ id: number }>
+    params: Promise<{ id: number }>;
 }
 
 export interface IFilterProps {
-    onFilterChanged: (searchText: string, completed: boolean | undefined, sorting: SortType) => void;
+    onFilterChanged: (
+        searchText: string,
+        completed: boolean | undefined,
+        sorting: SortType
+    ) => void;
 }
 
 export interface ISearchBoxProps {
-    searchText: string,
-    onSearchTextChanged: (searchText: string) => void,
+    searchText: string;
+    onSearchTextChanged: (searchText: string) => void;
 }
 
 export type SortType = 'asc' | 'desc' | 'none';
 
 export interface ISortButtonProps {
-    sorting: SortType,
-    onSortingChanged: (sorting: SortType) => void,
+    sorting: SortType;
+    onSortingChanged: (sorting: SortType) => void;
 }
 
 export interface ICompletedDropdownProps {
-    completed: boolean | undefined,
-    onCompletedChanged: (newCompleted: boolean | undefined) => void,
+    completed: boolean | undefined;
+    onCompletedChanged: (newCompleted: boolean | undefined) => void;
 }
 
 export interface IModalProps {

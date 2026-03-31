@@ -2,30 +2,30 @@ import { ISearchBoxProps } from '@/types';
 import { debounce } from '@/utils/debounce';
 
 export function SearchBox({
-  searchText,
-  onSearchTextChanged,
+    searchText,
+    onSearchTextChanged,
 }: ISearchBoxProps) {
-  const debouncedOnSearchTextChanged = debounce(onSearchTextChanged);
+    const debouncedOnSearchTextChanged = debounce(onSearchTextChanged);
 
-  function onSearchTextInput(e: React.InputEvent<HTMLInputElement>): void {
-    const newSearchText = e.currentTarget.value;
+    function onSearchTextInput(e: React.InputEvent<HTMLInputElement>): void {
+        const newSearchText = e.currentTarget.value;
 
-    debouncedOnSearchTextChanged(newSearchText);
-  }
+        debouncedOnSearchTextChanged(newSearchText);
+    }
 
-  return (
-    <>
-      <input
-        data-testid="search-input"
-        className="alx-input"
-        type="text"
-        placeholder="Find a task..."
-        defaultValue={searchText}
-        onInput={onSearchTextInput}
-      />
-      <span className="alx-icon alx-is-small alx-is-right">
-        <i className="fas fa-magnifying-glass"></i>
-      </span>
-    </>
-  );
+    return (
+        <>
+            <input
+                data-testid="search-input"
+                className="alx-input"
+                type="text"
+                placeholder="Find a task..."
+                defaultValue={searchText}
+                onInput={onSearchTextInput}
+            />
+            <span className="alx-icon alx-is-small alx-is-right">
+                <i className="fas fa-magnifying-glass"></i>
+            </span>
+        </>
+    );
 }

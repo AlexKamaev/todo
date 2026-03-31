@@ -2,5 +2,6 @@ $yellow: #dc7185;
 $warning: $yellow;
 
 @use '@fortawesome/fontawesome-free/css/all.min.css';
-@use "../../node_modules/bulma/sass" as bulma with ($class-prefix: "alx-",
+@use '../../node_modules/bulma/sass' as bulma with (
+    $class-prefix: 'alx-'
 );

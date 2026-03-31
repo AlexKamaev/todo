@@ -1,14 +1,14 @@
 export default function SiteLayout({
-  children,
-  modal,
+    children,
+    modal,
 }: {
-  children: React.ReactNode;
-  modal?: React.ReactNode;
+    children: React.ReactNode;
+    modal?: React.ReactNode;
 }) {
-  return (
-    <>
-      {modal}
-      {children}
-    </>
-  );
+    return (
+        <>
+            {modal}
+            {children}
+        </>
+    );
 }
